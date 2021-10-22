@@ -63,6 +63,30 @@ class SceneMainMenu extends Phaser.Scene {
       color: '#ffffff',
       align: 'center'
     });
+    this.text1 = this.add.text(this.game.config.width * 0.5, 500, "Move with LEFT and RIGHT for turret", {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+    this.text2 = this.add.text(this.game.config.width * 0.5, 600, "Move with Q and D for shield", {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+    this.text3 = this.add.text(this.game.config.width * 0.5, 700, "Spacebar to shoot", {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+    this.text1.setOrigin(.5);
+    this.text2.setOrigin(.5);
+    this.text3.setOrigin(.5);
     this.title.setOrigin(0.5);
     this.subtitle.setOrigin(0.5);
     }
