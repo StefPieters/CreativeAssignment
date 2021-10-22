@@ -56,7 +56,15 @@ class SceneMainMenu extends Phaser.Scene {
       color: '#ffffff',
       align: 'center'
     });
+    this.subtitle = this.add.text(this.game.config.width * 0.5, 240, "Sound may be loud - Lower your volume", {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
     this.title.setOrigin(0.5);
+    this.subtitle.setOrigin(0.5);
     }
   }
 
