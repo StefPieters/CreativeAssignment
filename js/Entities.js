@@ -120,7 +120,8 @@ class Wall extends Entity{
     super(scene, x, y, key, "Wall");
   }
   onDestroy() {
-        this.scene.scene.start("SceneGameOver");
+    this.scene.sfx.LoseGame.play();
+    this.scene.scene.start("SceneGameOver");
   }
   
 }
