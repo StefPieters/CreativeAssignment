@@ -62,7 +62,7 @@ class SceneMain extends Phaser.Scene {
         let monsterKills = 0;
         let levelText;
 
-        this.music = this.sound.add('Music');
+        this.music = this.sound.add('Music', {volume:0.5});
 
         this.music.play();
         
@@ -106,14 +106,14 @@ class SceneMain extends Phaser.Scene {
 
         this.sfx = {
             explosions: [
-              this.sound.add("sndExplode0"),
-              this.sound.add("sndExplode1")
+              this.sound.add("sndExplode0", {volume:0.5}),
+              this.sound.add("sndExplode1", {volume:0.5})
             ],
-            laser: this.sound.add("sndLaser"),
-            WallHit: this.sound.add("sndWallHit"),
-            ShieldHit: this.sound.add("sndShieldHit"),
-            WinGame: this.sound.add("sndWinGame"),
-            LoseGame: this.sound.add("sndLoseGame")
+            laser: this.sound.add("sndLaser", {volume:0.5}),
+            WallHit: this.sound.add("sndWallHit", {volume:0.5}),
+            ShieldHit: this.sound.add("sndShieldHit", {volume:0.5}),
+            WinGame: this.sound.add("sndWinGame", {volume:0.5}),
+            LoseGame: this.sound.add("sndLoseGame", {volume:0.5})
         }
         this.wall = new Wall(this,this.game.config.width * 0.5, this.game.config.height * .97, "Wall");
         this.player = new Player(this, this.game.config.width * 0.5, this.game.config.height * .955, "Player");
