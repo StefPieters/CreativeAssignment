@@ -59,7 +59,7 @@ class SceneMain extends Phaser.Scene {
         let scoreText;
         let lives = 5;
         let livesText;
-        let monsterKills = 0;
+        let monsterKills = 99;
         let levelText;
 
         this.music = this.sound.add('Music', {volume:0.5});

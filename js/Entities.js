@@ -15,7 +15,6 @@ class Entity extends Phaser.GameObjects.Sprite {
     this.scene.sfx.ShieldHit.play();
     }
     winGame(){
-          
       this.scene.sfx.WinGame.play();
     }
     explode(canDestroy) {
