@@ -8,6 +8,16 @@ class Entity extends Phaser.GameObjects.Sprite {
         this.setData("type", type);
         this.setData("isDead", false);
     }
+    wallHit(){
+    this.scene.sfx.WallHit.play();
+    }
+    shieldHit(){
+    this.scene.sfx.ShieldHit.play();
+    }
+    winGame(){
+          
+      this.scene.sfx.WinGame.play();
+    }
     explode(canDestroy) {
       if (!this.getData("isDead")) {
         // Set the texture to the explosion image, then play the animation
@@ -177,7 +187,7 @@ class PinkEnemy extends Entity {
     constructor(scene, x, y) {
       super(scene, x, y, "PinkEnemy", "PinkEnemy");
       this.body.velocity.y = Phaser.Math.Between(10, 30);
-      this.shootDelay = 5000;
+      this.shootDelay = 3500;
       this.shootTimer = this.scene.time.addEvent({
         delay: this.shootDelay,
         callback: function() {

@@ -13,7 +13,8 @@ var config = {
   scene: [
     SceneMainMenu,
     SceneMain,
-    SceneGameOver
+    SceneGameOver,
+    SceneGameWon
   ],
   pixelArt: true,
   roundPixels: true

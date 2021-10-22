@@ -46,16 +46,20 @@ class SceneMain extends Phaser.Scene {
         this.load.audio("sndExplode0", "assets/sndExplode0.wav");
         this.load.audio("sndExplode1", "assets/sndExplode1.wav");
         this.load.audio("sndLaser", "assets/sndLaser.wav");
-        this.load.audio("Music", "assets/Chiptronical.ogg")
+        this.load.audio("sndLoseGame", "assets/sndLoseGame.wav");
+        this.load.audio("sndWinGame", "assets/sndWinGame.wav");
+        this.load.audio("sndWallHit", "assets/sndWallHit.wav");
+        this.load.audio("sndShieldHit", "assets/sndShieldHit.wav");
+        this.load.audio("Music", "assets/Chiptronical.ogg");
         
     }
     create() {
       
         let score = 0;
         let scoreText;
-        let lives = 3;
+        let lives = 5;
         let livesText;
-        let monsterKills = 60;
+        let monsterKills = 0;
         let levelText;
 
         this.music = this.sound.add('Music');
@@ -66,8 +70,8 @@ class SceneMain extends Phaser.Scene {
         this.bg.displayWidth = this.sys.canvas.width;
         this.bg.displayHeight = 750;
         scoreText = this.add.text(20, 30, 'Score: 0', { fontFamily: 'arial', fontSize: '30px', fill: 'white' });
-        livesText = this.add.text(900, 30, `Lives: ${lives}`, { fontFamily: 'times new roman', fontSize: '30px', fill: 'white' });
-        levelText = this.add.text(500, 30, 'Level 1', { fontFamily: 'times new roman', fontSize: '30px', fill: 'white' });
+        livesText = this.add.text(900, 30, `Lives: ${lives}`, { fontFamily: 'arial', fontSize: '30px', fill: 'white' });
+        levelText = this.add.text(500, 30, 'Level 1', { fontFamily: 'arial', fontSize: '30px', fill: 'white' });
         this.anims.create({
             key: "RedEnemy",
             frames: this.anims.generateFrameNumbers("RedEnemy"),
@@ -105,16 +109,12 @@ class SceneMain extends Phaser.Scene {
               this.sound.add("sndExplode0"),
               this.sound.add("sndExplode1")
             ],
-            laser: this.sound.add("sndLaser")
+            laser: this.sound.add("sndLaser"),
+            WallHit: this.sound.add("sndWallHit"),
+            ShieldHit: this.sound.add("sndShieldHit"),
+            WinGame: this.sound.add("sndWinGame"),
+            LoseGame: this.sound.add("sndLoseGame")
         }
-
-        /*this.wall = new Wall(
-          this,
-          this.game.config.width * 0.5,
-          this.game.config.height * 0.5,
-          "Wall"
-        )*/
-
         this.wall = new Wall(this,this.game.config.width * 0.5, this.game.config.height * .97, "Wall");
         this.player = new Player(this, this.game.config.width * 0.5, this.game.config.height * .955, "Player");
         this.shield = new Shield(this, this.game.config.width * 0.5, this.game.config.height * .74, "Shield");
@@ -131,7 +131,6 @@ class SceneMain extends Phaser.Scene {
         this.enemies = this.add.group();
         this.enemyLasers = this.add.group();
         this.playerLasers = this.add.group();
-        this.shields = this.add.group();
 
         //bring shield back
         /*this.time.addEvent({
@@ -301,6 +300,14 @@ class SceneMain extends Phaser.Scene {
             }
 
 
+            // WIN GAME ------------------------------------
+          if(monsterKills >= 100){
+          this.player.winGame();
+          this.music.stop();
+          this.scene.start("SceneGameWon");
+          
+          }
+
           },
           callbackScope: this,
           loop: true
@@ -369,7 +376,7 @@ class SceneMain extends Phaser.Scene {
             score += 10;
             monsterKills += 1;
             enemy.explode(true);
-            scoreText.setText('Score: ' + monsterKills);
+            scoreText.setText('Score: ' + score);
           }
         });
         this.physics.add.collider(this.playerLasers, this.bigEnemies, function(playerLaser, bigEnemy) {
@@ -396,6 +403,8 @@ class SceneMain extends Phaser.Scene {
             lives = lives-1;
             console.log(lives);
             livesText.setText(`Lives: ${lives}`)
+            //---------------
+            wall.wallHit();
             if(lives === 0){
             wall.setData("isDead", "true");
             wall.explode(true);
@@ -403,12 +412,14 @@ class SceneMain extends Phaser.Scene {
             }
           }
         });
-
+        
         this.physics.add.overlap(this.shield, this.enemyLasers, function(shield, enemyLaser) {
           if (enemyLaser) {
             if (enemyLaser.onDestroy !== undefined) {
               enemyLaser.onDestroy();
             }
+            //------------------
+            shield.shieldHit();
             enemyLaser.explode(true);
           }
         });
