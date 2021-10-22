@@ -153,6 +153,7 @@ class BlackEnemy extends Entity {
       super(scene, x, y, "BlackEnemy", "BlackEnemy");
       this.body.velocity.y = Phaser.Math.Between(40, 45);
       this.body.velocity.x = Phaser.Math.Between(-400,400);
+      this.play("BlackEnemy");
     }
     update(){
       
@@ -223,6 +224,7 @@ class GreenEnemy extends Entity {
         SLIDE: "SLIDE"
       };
       this.state = this.states.MOVE_DOWN;
+      this.play("GreenEnemy");
     }
 
     update(){
