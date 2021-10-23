@@ -13,7 +13,7 @@ class Entity extends Phaser.GameObjects.Sprite {
     this.scene.sfx.WallHit.play();
     }
     Ping(){
-    this.scene.sfx.HeartPing.play();
+      this.scene.sfx.ShieldHit.play();
     }
     shieldHit(){
     this.scene.sfx.ShieldHit.play();
@@ -74,7 +74,7 @@ class Player extends Entity {
             this.setData("timerShootTick", this.getData("timerShootTick") + 1); // every game update, increase timerShootTick by one until we reach the value of timerShootDelay
           }
           else { // when the "manual timer" is triggered:
-            let laser = new PlayerLaser(this.scene, this.x, this.y);
+            var laser = new PlayerLaser(this.scene, this.x, this.y);
             this.scene.playerLasers.add(laser);
             this.scene.sfx.laser.play(); // play the laser sound effect
             this.setData("timerShootTick", 0);
@@ -141,7 +141,7 @@ class EnemyBoss extends Entity {
       this.shootTimer = this.scene.time.addEvent({
         delay: this.shootDelay,
         callback: function() {
-          let laser = new EnemyLaser(
+          var laser = new EnemyLaser(
             this.scene,
             Phaser.Math.Between(30, 1050),
             this.y
@@ -214,7 +214,7 @@ class PinkEnemy extends Entity {
       this.shootTimer = this.scene.time.addEvent({
         delay: this.shootDelay,
         callback: function() {
-          let laser = new EnemyLaser(
+          var laser = new EnemyLaser(
             this.scene,
             this.x,
             this.y
@@ -259,10 +259,10 @@ class GreenEnemy extends Entity {
           this.state = this.states.SLIDE;
         }
         if (this.state == this.states.SLIDE) {
-          let dx = this.scene.player.x - this.x;
-          let dy = this.scene.player.y - this.y;
-          let angle = Math.atan2(dy, dx);
-          let speed = 300;
+          var dx = this.scene.player.x - this.x;
+          var dy = this.scene.player.y - this.y;
+          var angle = Math.atan2(dy, dx);
+          var speed = 300;
           this.body.setVelocity(
             Math.cos(angle) * speed,
             Math.sin(angle) * speed
