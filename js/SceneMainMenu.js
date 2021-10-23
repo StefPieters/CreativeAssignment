@@ -3,14 +3,14 @@ class SceneMainMenu extends Phaser.Scene {
       super({ key: "SceneMainMenu" });
     }
     preload(){
-      var progressBar = this.add.graphics();
-            var progressBox = this.add.graphics();
+      let progressBar = this.add.graphics();
+            let progressBox = this.add.graphics();
             progressBox.fillStyle(0x222222, 0.8);
             progressBox.fillRect(370, 330, 320, 50);
             
-            var width = this.cameras.main.width;
-            var height = this.cameras.main.height;
-            var loadingText = this.make.text({
+            let width = this.cameras.main.width;
+            let height = this.cameras.main.height;
+            let loadingText = this.make.text({
                 x: width / 2,
                 y: height / 2 - 50,
                 text: 'Loading...',
@@ -22,7 +22,7 @@ class SceneMainMenu extends Phaser.Scene {
             });
             loadingText.setOrigin(0.5, 0.5);
             
-            var percentText = this.make.text({
+            let percentText = this.make.text({
                 x: width / 2,
                 y: height / 2 - 5,
                 text: '0%',
@@ -33,7 +33,7 @@ class SceneMainMenu extends Phaser.Scene {
             });
             percentText.setOrigin(0.5, 0.5);
             
-            var assetText = this.make.text({
+            let assetText = this.make.text({
                 x: width / 2,
                 y: height / 2 + 50,
                 text: '',

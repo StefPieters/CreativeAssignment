@@ -11,9 +11,9 @@ class SceneMain extends Phaser.Scene {
         let scoreText;
         let lives = 5;
         let livesText;
-        let monsterKills = 200;
+        let monsterKills = 0;
         let levelText;
-        let bossLives = 30;
+        let bossLives = 0;
         let BossActive = "false";
         let bossLivesText;
 
@@ -101,7 +101,7 @@ class SceneMain extends Phaser.Scene {
           this.time.addEvent({
           delay: 1000,
           callback: function() {
-             var bossEnemy = null;
+             let bossEnemy = null;
              
             //BOSS LEVEL
           if(BossActive === "false"){
@@ -137,10 +137,10 @@ class SceneMain extends Phaser.Scene {
           this.time.addEvent({
           delay: 1000,
           callback: function() {
-            var laser = null;
+            let laser = null;
           if(bossLives > 30 && bossLives < 50){
             console.log("LASERATTACK")
-            var laser = new EnemyLaser(
+            let laser = new EnemyLaser(
             this,
             400,
             0
@@ -159,7 +159,7 @@ class SceneMain extends Phaser.Scene {
           callback: function() {
           if(bossLives > 50 && bossLives < 70){
             console.log("LASERATTACK")
-            var laser = new EnemyLaser(
+            let laser = new EnemyLaser(
             this,
             800,
             0
@@ -187,8 +187,8 @@ class SceneMain extends Phaser.Scene {
           this.time.addEvent({
           delay: 2000,
           callback: function() {
-             var enemy = null;
-             var bigEnemy = null;
+             let enemy = null;
+             let bigEnemy = null;
             //LEVEL 8 part3
           if(monsterKills >= 130 && monsterKills < 170){
               enemy = new RedEnemy(
@@ -224,8 +224,8 @@ class SceneMain extends Phaser.Scene {
           this.time.addEvent({
           delay: 5000,
           callback: function() {
-            var enemy = null;
-            var bigEnemy = null;
+            let enemy = null;
+            let bigEnemy = null;
             //LEVEL 6 part 2
             if(monsterKills > 75 && monsterKills <= 100){
               
@@ -315,8 +315,8 @@ class SceneMain extends Phaser.Scene {
         this.time.addEvent({
           delay: 1500,
           callback: function() {
-            var enemy = null;
-            var bigEnemy = null;
+            let enemy = null;
+            let bigEnemy = null;
             
             //LEVEL 1
               if(monsterKills >= 0 && monsterKills <= 10){
@@ -475,7 +475,7 @@ class SceneMain extends Phaser.Scene {
         this.time.addEvent({
           delay: 50000,
           callback: function() {
-            var heart = null;
+            let heart = null;
             heart = new Heart(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),
@@ -699,9 +699,9 @@ class SceneMain extends Phaser.Scene {
 
         }
         getEnemiesByType(type) {
-          var arr = [];
-          for (var i = 0; i < this.enemies.getChildren().length; i++) {
-            var enemy = this.enemies.getChildren()[i];
+          let arr = [];
+          for (let i = 0; i < this.enemies.getChildren().length; i++) {
+            let enemy = this.enemies.getChildren()[i];
             if (enemy.getData("type") == type) {
               arr.push(enemy);
             }
@@ -743,8 +743,8 @@ class SceneMain extends Phaser.Scene {
           }
         
 
-        for (var i = 0; i < this.enemies.getChildren().length; i++) {
-          var enemy = this.enemies.getChildren()[i];
+        for (let i = 0; i < this.enemies.getChildren().length; i++) {
+          let enemy = this.enemies.getChildren()[i];
           enemy.update();
 
           if (enemy.x < -enemy.displayWidth ||
@@ -760,8 +760,8 @@ class SceneMain extends Phaser.Scene {
           }
         }
 
-        for (var i = 0; i < this.enemyLasers.getChildren().length; i++) {
-          var laser = this.enemyLasers.getChildren()[i];
+        for (let i = 0; i < this.enemyLasers.getChildren().length; i++) {
+          let laser = this.enemyLasers.getChildren()[i];
           laser.update();
           if (laser.x < -laser.displayWidth ||
             laser.x > this.game.config.width + laser.displayWidth ||
@@ -773,8 +773,8 @@ class SceneMain extends Phaser.Scene {
           }
         }
     
-        for (var i = 0; i < this.playerLasers.getChildren().length; i++) {
-          var laser = this.playerLasers.getChildren()[i];
+        for (let i = 0; i < this.playerLasers.getChildren().length; i++) {
+          let laser = this.playerLasers.getChildren()[i];
           laser.update();
           
           if (laser.x < -laser.displayWidth ||
