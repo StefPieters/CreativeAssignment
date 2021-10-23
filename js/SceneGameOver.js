@@ -11,7 +11,7 @@ class SceneGameOver extends Phaser.Scene {
       this.bgGameOver = this.add.image(540,300, "lostcity")
       this.bgGameOver.displayWidth = this.sys.canvas.width;
       this.bgGameOver.displayHeight = this.sys.canvas.height;
-      
+
       this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
         fontFamily: 'monospace',
         fontSize: 48,
@@ -20,7 +20,14 @@ class SceneGameOver extends Phaser.Scene {
         align: 'center'
       });
       this.title.setOrigin(0.5);
-      this.text = this.add.text(this.game.config.width * 0.5, 228, "The City has been lost, the monsters devoured the city", {
+      this.text = this.add.text(this.game.config.width * 0.5, 528, "The City has been lost", {
+        fontFamily: 'monospace',
+        fontSize: 24,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center'
+      });
+      this.text2 = this.add.text(this.game.config.width * 0.5, 568, "the monsters devoured the city", {
         fontFamily: 'monospace',
         fontSize: 24,
         fontStyle: 'bold',
@@ -28,15 +35,16 @@ class SceneGameOver extends Phaser.Scene {
         align: 'center'
       });
       this.text.setOrigin(0.5);
+      this.text2.setOrigin(0.5);
 
       this.sfx = {
-        btnOver: this.sound.add("sndBtnOver"),
-        btnDown: this.sound.add("sndBtnDown")
+        btnOver: this.sound.add("sndBtnOver", {volume:0.2}),
+        btnDown: this.sound.add("sndBtnDown", {volume:0.2})
       };
   
       this.btnRestart = this.add.sprite(
         this.game.config.width * 0.5,
-        this.game.config.height * 0.5,
+        this.game.config.height * 0.35,
         "sprBtnRestart"
       );
       this.btnRestart.setScale(.2);
@@ -63,7 +71,7 @@ class SceneGameOver extends Phaser.Scene {
 
       this.btnMenu = this.add.sprite(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.7,
+      this.game.config.height * 0.55,
       "sprBtnMenu"
     );
     this.btnMenu.setScale(.2);

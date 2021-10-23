@@ -11,10 +11,10 @@ class SceneTutorial extends Phaser.Scene {
         this.bgMenu.displayHeight = 1100;
     
     this.sfx = {
-      btnOver: this.sound.add("sndBtnOver"),
-      btnDown: this.sound.add("sndBtnDown")
+      btnOver: this.sound.add("sndBtnOver", {volume:0.2}),
+      btnDown: this.sound.add("sndBtnDown", {volume:0.2})
     };
-    
+
 
     this.btnMenu = this.add.sprite(
       this.game.config.width * 0.1,

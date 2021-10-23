@@ -12,6 +12,9 @@ class Entity extends Phaser.GameObjects.Sprite {
     wallHit(){
     this.scene.sfx.WallHit.play();
     }
+    Ping(){
+    this.scene.sfx.HeartPing.play();
+    }
     shieldHit(){
     this.scene.sfx.ShieldHit.play();
     }
@@ -125,30 +128,40 @@ class Wall extends Entity{
     this.scene.sfx.LoseGame.play();
     this.scene.scene.start("SceneGameOver");
   }
+  stopMusic(){
+    this.scene.BossMusic.stop();
+  }
   
 }
-/*class BlackEnemy extends Entity{
-  constructor(scene, x, y) {
-      super(scene, x, y, "BlackEnemy", "BlackEnemy");
-      this.body.velocity.y = Phaser.Math.Between(10, 15);
+class EnemyBoss extends Entity {
+    constructor(scene, x, y) {
+      super(scene, x, y, "EnemyBoss", "EnemyBoss");
+      this.body.velocity.y = 2;
+      this.shootDelay = 1000;
+      this.shootTimer = this.scene.time.addEvent({
+        delay: this.shootDelay,
+        callback: function() {
+          var laser = new EnemyLaser(
+            this.scene,
+            Phaser.Math.Between(30, 1050),
+            this.y
+          );
+          laser.setScale(this.scaleX*.35);
+          this.scene.enemyLasers.add(laser);
+        },
+        callbackScope: this,
+        loop: true
+      });
+      this.play("EnemyBoss");
     }
-    update(){
-      console.log('update');
-      this.body.setVelocity(0, 0);
-      if(this.x < 64){
-        this.body.setVelocity(-40,30);
-      }else if(this.x > this.scene.game.config.width-64){
-        this.body.setVelocity(40,30)
+    onDestroy(){
+      if (this.shootTimer !== undefined) {
+        if (this.shootTimer) {
+          this.shootTimer.remove(false);
+        }
       }
+    }
   }
-    wiggleRight(){
-      this.body.setVelocity(-40,30);
-    }
-    wiggleLeft(){
-      this.body.setVelocity(40,30);
-    }
-    
-}*/
 
 class BlackEnemy extends Entity {
     constructor(scene, x, y) {
@@ -183,7 +196,13 @@ class RedEnemy extends Entity {
     constructor(scene, x, y) {
       super(scene, x, y, "RedEnemy", "RedEnemy");
       this.body.velocity.y = Phaser.Math.Between(60, 90);
-      this.play("RedEnemy");
+    }
+  }
+
+class Heart extends Entity {
+    constructor(scene, x, y) {
+      super(scene, x, y, "heart", "heart");
+      this.body.velocity.y = 200;
     }
   }
 

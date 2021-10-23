@@ -3,7 +3,7 @@ class SceneGameWon extends Phaser.Scene {
       super({ key: "SceneGameWon" });
     }
     preload(){
-      this.load.image("city", "assets/city.png");
+      
     }
     create() {
       this.bgGameWon = this.add.image(540,300, "city")
@@ -12,13 +12,13 @@ class SceneGameWon extends Phaser.Scene {
       
       this.title = this.add.text(this.game.config.width * 0.5, 128, "THANK YOU HERO", {
         fontFamily: 'monospace',
-        fontSize: 48,
+        fontSize: 60,
         fontStyle: 'bold',
         color: 'black',
         align: 'center'
       });
       this.title.setOrigin(0.5);
-      this.text = this.add.text(this.game.config.width * 0.5, 190, "You killed all the incoming monsters!", {
+      this.text = this.add.text(this.game.config.width * 0.5, 220, "You killed all the incoming monsters!", {
         fontFamily: 'monospace',
         fontSize: 24,
         fontStyle: 'bold',
@@ -28,8 +28,8 @@ class SceneGameWon extends Phaser.Scene {
       this.text.setOrigin(0.5);
 
       this.sfx = {
-        btnOver: this.sound.add("sndBtnOver"),
-        btnDown: this.sound.add("sndBtnDown")
+        btnOver: this.sound.add("sndBtnOver", {volume:0.2}),
+        btnDown: this.sound.add("sndBtnDown", {volume:0.2})
       };
   
       this.btnRestart = this.add.sprite(
@@ -59,5 +59,33 @@ class SceneGameWon extends Phaser.Scene {
         this.scene.start("SceneMain");
       }, this);
 
+    this.btnMenu = this.add.sprite(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.7,
+      "sprBtnMenu"
+    );
+    this.btnMenu.setScale(.2);
+
+    this.btnMenu.setInteractive();
+    
+    
+    this.btnMenu.on("pointerover", function() {
+      this.btnMenu.setTexture("sprBtnMenuHover");
+      this.sfx.btnOver.play(); // play the button over sound
+    }, this);
+
+    this.btnMenu.on("pointerout", function() {
+      this.setTexture("sprBtnMenu");
+    });
+
+    this.btnMenu.on("pointerdown", function() {
+      this.btnMenu.setTexture("sprBtnMenuDown");
+      this.sfx.btnDown.play();
+    }, this);
+
+    this.btnMenu.on("pointerup", function() {
+      this.btnMenu.setTexture("sprBtnMenu");
+      this.scene.start("SceneMainMenu");
+    }, this);
     }
   }

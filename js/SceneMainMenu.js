@@ -99,15 +99,15 @@ class SceneMainMenu extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         }); 
-        /*this.load.spritesheet("EnemyBoss", "assets/EnemyBoss.png", {
-            frameWidth: 16,
-            frameHeight: 16
-        }); */
+        this.load.spritesheet("EnemyBoss", "assets/EnemyBoss.png", {
+            frameWidth: 64,
+            frameHeight: 64
+        });
         this.load.spritesheet("Explosion", "assets/Explosion.png", {
             frameWidth: 32,
             frameHeight: 32
         });
-
+        this.load.image("heart", "assets/heart.png");
         this.load.image("lostcity", "assets/lostcity.png");
         this.load.image("LaserPlayer", "assets/LaserPlayer.png");
         this.load.image("LaserEnemy", "assets/LaserEnemy.png");
@@ -119,6 +119,7 @@ class SceneMainMenu extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
           });
+        this.load.image("city", "assets/city.png");
 
         this.load.audio("sndExplode0", "assets/sndExplode0.wav");
         this.load.audio("sndExplode1", "assets/sndExplode1.wav");
@@ -128,6 +129,8 @@ class SceneMainMenu extends Phaser.Scene {
         this.load.audio("sndWallHit", "assets/sndWallHit.wav");
         this.load.audio("sndShieldHit", "assets/sndShieldHit.wav");
         this.load.audio("Music", "assets/Chiptronical.ogg");
+        this.load.audio("BossMusic", "assets/HyruleCastle.mp3");
+        this.load.audio("HeartPing", "assets/heartPing.wav");
   }
 
   create() {
@@ -135,8 +138,8 @@ class SceneMainMenu extends Phaser.Scene {
         this.bgMenu.displayWidth = this.sys.canvas.width;
         this.bgMenu.displayHeight = 1100;
     this.sfx = {
-      btnOver: this.sound.add("sndBtnOver"),
-      btnDown: this.sound.add("sndBtnDown")
+      btnOver: this.sound.add("sndBtnOver",{volume:0.2}),
+      btnDown: this.sound.add("sndBtnDown",{volume:0.2})
     };
 
     this.btnPlay = this.add.sprite(
@@ -146,7 +149,7 @@ class SceneMainMenu extends Phaser.Scene {
     );
     this.btnPlay.setScale(.2);
 
-    this.btnPlay.setInteractive();
+    
     
 
     this.btnPlay.on("pointerover", function() {
@@ -167,6 +170,7 @@ class SceneMainMenu extends Phaser.Scene {
       this.btnPlay.setTexture("sprBtnPlay");
       this.scene.start("SceneStory");
     }, this);
+    this.btnPlay.setInteractive();
 
     
     
@@ -178,7 +182,7 @@ class SceneMainMenu extends Phaser.Scene {
     );
     this.btnTutorial.setScale(.2);
 
-    this.btnTutorial.setInteractive();
+   
 
 
     this.btnTutorial.on("pointerover", function() {
@@ -199,6 +203,7 @@ class SceneMainMenu extends Phaser.Scene {
       this.btnTutorial.setTexture("sprBtnTutorial");
       this.scene.start("SceneTutorial");
     }, this);
+     this.btnTutorial.setInteractive();
 
     this.add.sprite(
       this.game.config.width * 0.5,
