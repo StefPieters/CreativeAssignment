@@ -491,6 +491,7 @@ class SceneMain extends Phaser.Scene {
         });
 
         // WIN GAME ------------------------------------
+
         this.time.addEvent({
           delay: 3000,
           callback: function() {
@@ -682,6 +683,7 @@ class SceneMain extends Phaser.Scene {
             wall.setData("isDead", "true");
             wall.explode(true);
             wall.onDestroy();
+            wall.stopMusic();
             
             }
           }
