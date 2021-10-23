@@ -3,55 +3,7 @@ class SceneMain extends Phaser.Scene {
       super({ key: "SceneMain" });
     }
     preload(){
-      
-        /*this.load.image("Background0", "assets/Background0.png");
-        this.load.image("Background1", "assets/Background1.png");*//* sprites voor backgrounds */
-
-        this.load.spritesheet("RedEnemy", "assets/RedEnemy.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("GreenEnemy", "assets/GreenEnemy.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });  
-        this.load.spritesheet("PinkEnemy", "assets/PinkEnemy.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        }); 
-        this.load.spritesheet("BlackEnemy", "assets/BlackEnemy.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        }); 
-        /*this.load.spritesheet("EnemyBoss", "assets/EnemyBoss.png", {
-            frameWidth: 16,
-            frameHeight: 16
-        }); */
-        this.load.spritesheet("Explosion", "assets/Explosion.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-
-        this.load.image("lostcity", "assets/lostcity.png");
-        this.load.image("LaserPlayer", "assets/LaserPlayer.png");
-        this.load.image("LaserEnemy", "assets/LaserEnemy.png");
-        this.load.image("Shield", "assets/Shield.png");
-        this.load.image("Wall", "assets/Wall.png");
-        this.load.image("Background", "assets/Background.png");
-        this.load.image("Player", "assets/Player.png", {
-            frameWidth: 32,
-            frameHeight: 32
-          });
-
-        this.load.audio("sndExplode0", "assets/sndExplode0.wav");
-        this.load.audio("sndExplode1", "assets/sndExplode1.wav");
-        this.load.audio("sndLaser", "assets/sndLaser.wav");
-        this.load.audio("sndLoseGame", "assets/sndLoseGame.wav");
-        this.load.audio("sndWinGame", "assets/sndWinGame.wav");
-        this.load.audio("sndWallHit", "assets/sndWallHit.wav");
-        this.load.audio("sndShieldHit", "assets/sndShieldHit.wav");
-        this.load.audio("Music", "assets/Chiptronical.ogg");
-        
+    
     }
     create() {
       
@@ -61,6 +13,8 @@ class SceneMain extends Phaser.Scene {
         let livesText;
         let monsterKills = 0;
         let levelText;
+        let livesBoss = 100;
+        let monsterSpawn = 0;
 
         this.music = this.sound.add('Music', {volume:0.5});
 
@@ -69,9 +23,16 @@ class SceneMain extends Phaser.Scene {
         this.bg = this.add.image(540,300, "Background")
         this.bg.displayWidth = this.sys.canvas.width;
         this.bg.displayHeight = 750;
-        scoreText = this.add.text(20, 30, 'Score: 0', { fontFamily: 'arial', fontSize: '30px', fill: 'white' });
-        livesText = this.add.text(900, 30, `Lives: ${lives}`, { fontFamily: 'arial', fontSize: '30px', fill: 'white' });
-        levelText = this.add.text(500, 30, 'Level 1', { fontFamily: 'arial', fontSize: '30px', fill: 'white' });
+        scoreText = this.add.text(20, 30, 'Score: 0', { fontFamily: 'monospace', fontSize: '30px', fill: 'white' });
+        livesText = this.add.text(900, 30, `Lives: ${lives}`, { fontFamily: 'monospace', fontSize: '30px', fill: 'white' });
+        levelText = this.add.text(450, 30, "Level 1", {
+        fontFamily: 'monospace',
+        fontSize: '50px',
+        fontStyle: 'bold',
+        color: '#ffffff',
+        boundsAlignH: "center",
+        boundsAlignV: "middle"
+      });
         this.anims.create({
             key: "RedEnemy",
             frames: this.anims.generateFrameNumbers("RedEnemy"),
@@ -153,7 +114,11 @@ class SceneMain extends Phaser.Scene {
           callbackScope: this,
           loop: true
           });*/
-       this.time.addEvent({
+
+          
+
+
+          this.time.addEvent({
           delay: 5000,
           callback: function() {
             var enemy = null;
@@ -312,7 +277,8 @@ class SceneMain extends Phaser.Scene {
           callbackScope: this,
           loop: true
         });
-        
+          
+          
       
         
         
@@ -362,7 +328,7 @@ class SceneMain extends Phaser.Scene {
           loop: true
         });*/
         
-          
+      
           
         
 
@@ -409,6 +375,7 @@ class SceneMain extends Phaser.Scene {
             wall.setData("isDead", "true");
             wall.explode(true);
             wall.onDestroy();
+           
             }
           }
         });
@@ -448,11 +415,12 @@ class SceneMain extends Phaser.Scene {
             wall.explode(true);
             wall.onDestroy();
             
+            
             }
           }
         });
 
-      }
+        }
         getEnemiesByType(type) {
           var arr = [];
           for (var i = 0; i < this.enemies.getChildren().length; i++) {
@@ -465,8 +433,13 @@ class SceneMain extends Phaser.Scene {
         }        
 
         update(){
-
-          
+          if (this.keySpace.isDown) {
+          this.player.setData("isShooting", true);
+        }
+        else {
+          this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
+          this.player.setData("isShooting", false);
+        }
           if(this.wall.getData("isDead")){
             this.music.stop();
           }
@@ -491,14 +464,7 @@ class SceneMain extends Phaser.Scene {
               
             }
           }
-
-        if (this.keySpace.isDown) {
-          this.player.setData("isShooting", true);
-        }
-        else {
-          this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
-          this.player.setData("isShooting", false);
-        }
+        
 
         for (var i = 0; i < this.enemies.getChildren().length; i++) {
           var enemy = this.enemies.getChildren()[i];

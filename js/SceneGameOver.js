@@ -1,10 +1,12 @@
 class SceneGameOver extends Phaser.Scene {
     constructor() {
-      super({ key: "SceneGameOver" });
+      super({ key: "SceneGameOver"});
     }
+    
     preload(){
       this.load.image("lostcity", "assets/lostcity.png");
     }
+    
     create() {
       this.bgGameOver = this.add.image(540,300, "lostcity")
       this.bgGameOver.displayWidth = this.sys.canvas.width;
@@ -59,5 +61,37 @@ class SceneGameOver extends Phaser.Scene {
         this.scene.start("SceneMain");
       }, this);
 
+      this.btnMenu = this.add.sprite(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.7,
+      "sprBtnMenu"
+    );
+    this.btnMenu.setScale(.2);
+
+    this.btnMenu.setInteractive();
+    
+    
+    this.btnMenu.on("pointerover", function() {
+      this.btnMenu.setTexture("sprBtnMenuHover");
+      this.sfx.btnOver.play(); // play the button over sound
+    }, this);
+
+    this.btnMenu.on("pointerout", function() {
+      this.setTexture("sprBtnMenu");
+    });
+
+    this.btnMenu.on("pointerdown", function() {
+      this.btnMenu.setTexture("sprBtnMenuDown");
+      this.sfx.btnDown.play();
+    }, this);
+
+    this.btnMenu.on("pointerup", function() {
+      this.btnMenu.setTexture("sprBtnMenu");
+      this.scene.start("SceneMainMenu");
+    }, this);
     }
-  }
+
+    
+    
+}
+  

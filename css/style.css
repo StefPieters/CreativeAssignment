@@ -1,3 +1,5 @@
+
+
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -10,4 +12,14 @@ html {
 
   body{
       background-color:black;
+  }
+
+  .score{
+    color:white;
+    position:absolute;
+    display:flex;
+    margin-top:40px;
+    margin-left:10px;
+    font-family:monospace;
+    font-size:3rem;
   }

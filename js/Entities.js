@@ -7,6 +7,7 @@ class Entity extends Phaser.GameObjects.Sprite {
         this.scene.physics.world.enableBody(this, 0); 
         this.setData("type", type);
         this.setData("isDead", false);
+        
     }
     wallHit(){
     this.scene.sfx.WallHit.play();
@@ -51,6 +52,7 @@ class Player extends Entity {
         this.setData("isShooting", false);
         this.setData("timerShootDelay", 30);
         this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
+        
     }
 
     moveLeft() {
@@ -63,7 +65,7 @@ class Player extends Entity {
     update(){
         this.body.setVelocity(0, 0);
         this.x = Phaser.Math.Clamp(this.x, 28, this.scene.game.config.width-28); //player can't walk out off screen
-
+        
         if (this.getData("isShooting")) {
           if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
             this.setData("timerShootTick", this.getData("timerShootTick") + 1); // every game update, increase timerShootTick by one until we reach the value of timerShootDelay
@@ -117,6 +119,7 @@ class Shield extends Entity {
 class Wall extends Entity{
   constructor(scene, x, y, key){
     super(scene, x, y, key, "Wall");
+    this.setData("score", 100);
   }
   onDestroy() {
     this.scene.sfx.LoseGame.play();
@@ -233,7 +236,7 @@ class GreenEnemy extends Entity {
           this.y,
           this.scene.player.x,
           this.scene.player.y
-        ) < 600) {
+        ) < 700) {
           this.state = this.states.SLIDE;
         }
         if (this.state == this.states.SLIDE) {
