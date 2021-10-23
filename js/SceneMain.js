@@ -11,9 +11,9 @@ class SceneMain extends Phaser.Scene {
         let scoreText;
         let lives = 5;
         let livesText;
-        let monsterKills = 0;
+        let monsterKills = 200;
         let levelText;
-        let bossLives = 0;
+        let bossLives = 30;
         let BossActive = "false";
         let bossLivesText;
 
@@ -102,6 +102,7 @@ class SceneMain extends Phaser.Scene {
           delay: 1000,
           callback: function() {
              var bossEnemy = null;
+             
             //BOSS LEVEL
           if(BossActive === "false"){
           if(monsterKills >= 200){
@@ -136,6 +137,7 @@ class SceneMain extends Phaser.Scene {
           this.time.addEvent({
           delay: 1000,
           callback: function() {
+            var laser = null;
           if(bossLives > 30 && bossLives < 50){
             console.log("LASERATTACK")
             var laser = new EnemyLaser(
@@ -143,8 +145,10 @@ class SceneMain extends Phaser.Scene {
             400,
             0
           );
-          laser.setScale(1.5);
+          if (bossEnemy !== null) {
+            laser.setScale(1.5);
           this.enemyLasers.add(laser);
+          }
           }
           },
           callbackScope: this,
@@ -160,8 +164,11 @@ class SceneMain extends Phaser.Scene {
             800,
             0
           );
-          laser.setScale(1.5);
+
+          if (bossEnemy !== null) {
+            laser.setScale(1.5);
           this.enemyLasers.add(laser);
+          }
           }
           },
           callbackScope: this,
