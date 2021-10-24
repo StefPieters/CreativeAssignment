@@ -196,6 +196,7 @@ class RedEnemy extends Entity {
     constructor(scene, x, y) {
       super(scene, x, y, "RedEnemy", "RedEnemy");
       this.body.velocity.y = Phaser.Math.Between(60, 90);
+      this.play("RedEnemy");
     }
   }
 
@@ -230,7 +231,7 @@ class PinkEnemy extends Entity {
     constructor(scene, x, y) {
       super(scene, x, y, "PinkEnemy", "PinkEnemy");
       this.body.velocity.y = Phaser.Math.Between(10, 30);
-      this.shootDelay = 3500;
+      this.shootDelay = 3000;
       this.shootTimer = this.scene.time.addEvent({
         delay: this.shootDelay,
         callback: function() {
