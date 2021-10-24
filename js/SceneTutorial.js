@@ -62,8 +62,15 @@ class SceneTutorial extends Phaser.Scene {
       color: '#ffffff',
       align: 'center'
     });
+    this.text2 = this.add.text(this.game.config.width * 0.5, 600, "Stars give extra score and hearts give an extra life", {
+      fontFamily: 'monospace',
+      fontSize: 24,
+      color: '#ffffff',
+      align: 'center'
+    });
     
     this.text1.setOrigin(.5);
+    this.text2.setOrigin(.5);
     this.subtitle.setOrigin(0.5);
     }
   }
