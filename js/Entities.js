@@ -176,7 +176,7 @@ class BlackEnemy extends Entity {
 
         this.body.setVelocity(this.body.velocity.x*-1.1,this.body.velocity.y*1.3);
       
-      }else if(this.x >= this.scene.game.config.width-40){
+      }else if(this.x > this.scene.game.config.width-40){
       
         this.body.setVelocity(this.body.velocity.x*-1.1,this.body.velocity.y*1.3);
 

@@ -8,7 +8,7 @@ class SceneMain extends Phaser.Scene {
       
         let score = 0;
         let scoreText;
-        let lives = 5;
+        let lives = 3;
         let livesText;
         let monsterKills = 0;
         let levelText;
@@ -251,7 +251,7 @@ class SceneMain extends Phaser.Scene {
             levelText.setText(`Level 9`)
               bigEnemy = new BlackEnemy(
                 this,
-                Phaser.Math.Between(20, this.game.config.width-20),
+                Phaser.Math.Between(50, this.game.config.width-50),
                 0
               );
 
@@ -418,7 +418,7 @@ class SceneMain extends Phaser.Scene {
               levelText.setText("Level 5");
               bigEnemy = new BlackEnemy(
                 this,
-                Phaser.Math.Between(20, this.game.config.width-20),
+                Phaser.Math.Between(50, this.game.config.width-50),
                 0
               );
             }
@@ -430,7 +430,7 @@ class SceneMain extends Phaser.Scene {
               if (Phaser.Math.Between(0, 10) >= 5) {
               bigEnemy = new BlackEnemy(
                 this,
-                Phaser.Math.Between(20, this.game.config.width-20),
+                Phaser.Math.Between(50, this.game.config.width-50),
                 0
               );
 
@@ -478,7 +478,7 @@ class SceneMain extends Phaser.Scene {
             levelText.setText(`Level 8`)
               bigEnemy = new BlackEnemy(
                 this,
-                Phaser.Math.Between(20, this.game.config.width-20),
+                Phaser.Math.Between(50, this.game.config.width-50),
                 0
               );
 
@@ -512,7 +512,7 @@ class SceneMain extends Phaser.Scene {
 
         // HEART POWERUP -----------------------------------
         this.time.addEvent({
-          delay: 50000,
+          delay: 75000,
           callback: function() {
             var heart = null;
             heart = new Heart(
