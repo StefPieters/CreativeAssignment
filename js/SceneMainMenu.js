@@ -107,6 +107,7 @@ class SceneMainMenu extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        this.load.image("BossWall", "assets/BossWall.png");
         this.load.image("Star", "assets/star.png");
         this.load.image("Heart", "assets/heart.png");
         this.load.image("lostcity", "assets/lostcity.png");

@@ -11,7 +11,7 @@ class SceneMain extends Phaser.Scene {
         let scoreText;
         let lives = 5;
         let livesText;
-        let monsterKills = 0;
+        let monsterKills = 200;
         let levelText;
         let bossLives = 0; // 0 points is 100 hp for boss
         let BossActive = "false";
@@ -158,6 +158,17 @@ class SceneMain extends Phaser.Scene {
             0
           );
           } 
+          if(bossLives > 70 && bossLives <= 90){
+            
+            console.log("LASERATTACK3")
+            var laser = new EnemyLaser(
+            this,
+            540,
+            0
+          );
+          } 
+          
+          
           if (laser !== null) {
             laser.setScale(1.5);
             this.enemyLasers.add(laser);
@@ -170,7 +181,36 @@ class SceneMain extends Phaser.Scene {
           callbackScope: this,
           loop: true
         });
-
+        this.time.addEvent({
+          delay: 3000,
+          callback: function() {
+            var enemy = null;
+            if(bossLives > 1 && bossLives <= 30){
+            
+            console.log("WallAttack")
+            var enemy = new BossWall(
+            this,
+            Phaser.Math.Between(400, this.game.config.width-400),
+            0
+          );
+          } 
+          if(bossLives > 90 && bossLives <= 100){
+            
+            console.log("WallAttack")
+            var enemy = new BossWall(
+            this,
+            Phaser.Math.Between(400, this.game.config.width-400),
+            0
+          );
+          } 
+          if (enemy !== null) {
+            enemy.setScale(3);
+            this.enemies.add(enemy);
+          }
+        },
+          callbackScope: this,
+          loop: true
+        });
           this.time.addEvent({
           delay: 2000,
           callback: function() {
@@ -186,7 +226,8 @@ class SceneMain extends Phaser.Scene {
 
           }
           //LEVEL 9 part3
-          if(monsterKills > 150 && monsterKills <= 200){
+          if(monsterKills > 150 && monsterKills < 199){
+            levelText.setText(`Level 9`)
               bigEnemy = new BlackEnemy(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),
@@ -423,7 +464,7 @@ class SceneMain extends Phaser.Scene {
           }
           //LEVEL 9
           if(monsterKills > 150 && monsterKills <= 200){
-            levelText.setText(`Level 9`)
+            
               enemy = new RedEnemy(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),

@@ -172,7 +172,7 @@ class BlackEnemy extends Entity {
     }
     update(){
       
-      if(this.x < 20){
+      if(this.x < 40){
         if(this.body.velocity.x <= 300){
         this.body.setVelocity(this.body.velocity.x*-1.2,this.body.velocity.y*2.5);
         console.log("left");
@@ -180,7 +180,7 @@ class BlackEnemy extends Entity {
         else if(this.body.velocity.x > 300){
         this.body.setVelocity(this.body.velocity.x*-.9,this.body.velocity.y*2.5)
         }
-      }else if(this.x >= this.scene.game.config.width-20){
+      }else if(this.x >= this.scene.game.config.width-40){
         console.log("right");
         if(this.body.velocity.x <= 300){
         this.body.setVelocity(this.body.velocity.x*-1.2,this.body.velocity.y*2.5);
@@ -198,6 +198,19 @@ class RedEnemy extends Entity {
       this.body.velocity.y = Phaser.Math.Between(60, 90);
     }
   }
+
+class BossWall extends Entity {
+    constructor(scene, x, y) {
+      super(scene, x, y, "BossWall", "BossWall");
+      this.body.velocity.y = 200; 
+      this.body.velocity.x = 0; 
+    }
+    update(){
+        if(this.y > 350){
+          this.body.velocity.y = 0;
+        }
+  }
+}
 
 class Heart extends Entity {
     constructor(scene, x, y) {
