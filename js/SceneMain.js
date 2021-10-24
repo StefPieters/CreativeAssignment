@@ -13,7 +13,7 @@ class SceneMain extends Phaser.Scene {
         let livesText;
         let monsterKills = 0;
         let levelText;
-        let bossLives = 0;
+        let bossLives = 0; // 0 points is 100 hp for boss
         let BossActive = "false";
         let bossLivesText;
 
@@ -75,7 +75,7 @@ class SceneMain extends Phaser.Scene {
             ShieldHit: this.sound.add("sndShieldHit", {volume:0.2}),
             WinGame: this.sound.add("sndWinGame", {volume:0.2}),
             LoseGame: this.sound.add("sndLoseGame", {volume:0.2}),
-            HeartPing: this.sound.add("HeartPing",{volume:0.4})
+            Ping: this.sound.add("HeartPing",{volume:0.4})
         }
         this.wall = new Wall(this,this.game.config.width * 0.5, this.game.config.height * .97, "Wall");
         this.player = new Player(this, this.game.config.width * 0.5, this.game.config.height * .955, "Player");
@@ -95,6 +95,7 @@ class SceneMain extends Phaser.Scene {
         this.enemyLasers = this.add.group();
         this.playerLasers = this.add.group();
         this.hearts = this.add.group();
+        this.stars = this.add.group();
 
     
           //BOSS LEVEL
@@ -102,7 +103,8 @@ class SceneMain extends Phaser.Scene {
           delay: 1000,
           callback: function() {
              var bossEnemy = null;
-             
+             var laser = null;
+          
             //BOSS LEVEL
           if(BossActive === "false"){
           if(monsterKills >= 200){
@@ -133,47 +135,32 @@ class SceneMain extends Phaser.Scene {
                 540,
                 0
               )
+             console.log(bossLives);
+          
           }
-          this.time.addEvent({
-          delay: 1000,
-          callback: function() {
-            var laser = null;
-          if(bossLives > 30 && bossLives < 50){
+          
+          }
+          if(bossLives > 30 && bossLives <= 50){
+            
             console.log("LASERATTACK")
             var laser = new EnemyLaser(
             this,
             400,
             0
           );
-          if (bossEnemy !== null) {
-            laser.setScale(1.5);
-          this.enemyLasers.add(laser);
           }
-          }
-          },
-          callbackScope: this,
-          loop: true
-         });
-         this.time.addEvent({
-          delay: 1000,
-          callback: function() {
-          if(bossLives > 50 && bossLives < 70){
-            console.log("LASERATTACK")
+          if(bossLives > 50 && bossLives <= 70){
+            
+            console.log("LASERATTACK2")
             var laser = new EnemyLaser(
             this,
             800,
             0
           );
-
-          if (bossEnemy !== null) {
+          } 
+          if (laser !== null) {
             laser.setScale(1.5);
-          this.enemyLasers.add(laser);
-          }
-          }
-          },
-          callbackScope: this,
-          loop: true
-         });
+            this.enemyLasers.add(laser);
           }
            if (bossEnemy !== null) {
               bossEnemy.setScale(5); //scale enemies
@@ -190,7 +177,7 @@ class SceneMain extends Phaser.Scene {
              var enemy = null;
              var bigEnemy = null;
             //LEVEL 8 part3
-          if(monsterKills >= 130 && monsterKills < 170){
+          if(monsterKills > 130 && monsterKills <= 150){
               enemy = new RedEnemy(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),
@@ -199,7 +186,7 @@ class SceneMain extends Phaser.Scene {
 
           }
           //LEVEL 9 part3
-          if(monsterKills >= 150 && monsterKills < 200){
+          if(monsterKills > 150 && monsterKills <= 200){
               bigEnemy = new BlackEnemy(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),
@@ -246,10 +233,9 @@ class SceneMain extends Phaser.Scene {
                 );
 
             }
-          
             }
             //LEVEL 7 part 2
-            if(monsterKills >= 100 && monsterKills < 130){
+            if(monsterKills > 100 && monsterKills <= 130){
             levelText.setText(`Level 7`)
             if (Phaser.Math.Between(0, 10) >= 5) {
               enemy = new RedEnemy(
@@ -258,15 +244,6 @@ class SceneMain extends Phaser.Scene {
                 0
               );
               
-            }
-            else if (Phaser.Math.Between(0, 10) >= 5) {
-              if (this.getEnemiesByType("GreenEnemy").length < 5) {
-                enemy = new GreenEnemy(
-                  this,
-                  Phaser.Math.Between(20, this.game.config.width-20),
-                  0
-                );
-              }
             }
             else {
               enemy = new PinkEnemy(
@@ -277,7 +254,7 @@ class SceneMain extends Phaser.Scene {
             }
           }
           //LEVEL 8 part2
-          if(monsterKills >= 130 && monsterKills < 150){
+          if(monsterKills > 130 && monsterKills <= 150){
               enemy = new PinkEnemy(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),
@@ -287,7 +264,7 @@ class SceneMain extends Phaser.Scene {
           }
 
           //LEVEL 9 part2
-          if(monsterKills >= 150 && monsterKills < 200){
+          if(monsterKills > 150 && monsterKills <= 200){
               enemy = new GreenEnemy(
                 this,
                 Phaser.Math.Between(20, this.game.config.width-20),
@@ -337,7 +314,7 @@ class SceneMain extends Phaser.Scene {
               );
             //LEVEL 3
               }
-            if(monsterKills > 15 && monsterKills <= 20){
+            if(monsterKills > 15 && monsterKills < 20){
               levelText.setText("Level 3");
               enemy = new PinkEnemy(
                 this,
@@ -407,7 +384,7 @@ class SceneMain extends Phaser.Scene {
             }
             }
             //LEVEL 7
-            if(monsterKills >= 100 && monsterKills < 130){
+            if(monsterKills > 100 && monsterKills <= 130){
             levelText.setText(`Level 7`)
             if (Phaser.Math.Between(0, 10) >= 5) {
               enemy = new RedEnemy(
@@ -435,7 +412,7 @@ class SceneMain extends Phaser.Scene {
             }
           }
           //LEVEL 8
-          if(monsterKills >= 130 && monsterKills < 150){
+          if(monsterKills > 130 && monsterKills <= 150){
             levelText.setText(`Level 8`)
               bigEnemy = new BlackEnemy(
                 this,
@@ -445,7 +422,7 @@ class SceneMain extends Phaser.Scene {
 
           }
           //LEVEL 9
-          if(monsterKills >= 150 && monsterKills < 200){
+          if(monsterKills > 150 && monsterKills <= 200){
             levelText.setText(`Level 9`)
               enemy = new RedEnemy(
                 this,
@@ -489,27 +466,57 @@ class SceneMain extends Phaser.Scene {
           callbackScope: this,
           loop: true
         });
+        // STAR POWERUP --------------------------------
+        this.time.addEvent({
+          delay: 40000,
+          callback: function() {
+            var star = null;
+            star = new Star(
+                this,
+                Phaser.Math.Between(20, this.game.config.width-20),
+                0
+              );
+              if (star !== null) {
+              star.setScale(2); //scale enemies
+              this.stars.add(star);
+              }
+            },
+          callbackScope: this,
+          loop: true
+        });
 
         // WIN GAME ------------------------------------
-
+        let winMusic = "false";
         this.time.addEvent({
-          delay: 3000,
+          delay: 1000,
           callback: function() {
           
           if(bossLives >= 100){
           
-          
+         
           this.time.addEvent({
           delay: 100,
           callback: function() {
+          
+          console.log(this.enemyLasers);
+          lives = 100;
+          this.playerLasers.clear();
+          this.enemyLasers.clear();
+          if(winMusic === "false"){
           this.wall.winGame();
+          winMusic = "true";
+          };
           this.BossMusic.stop();
           console.log("you win")
           this.bg.setTexture("city");
           levelText.setText('');
           livesText.setText('');
-          lives = 100;
-          this
+          this.player.setData("isDead",true);
+          this.shield.setData("isDead", true);
+          this.bgWin = this.add.sprite(540,300, "city")
+          this.bgWin.displayWidth = this.sys.canvas.width;
+          this.bgWin.displayHeight = 750;
+          this.wallWin = this.add.sprite(this.game.config.width * 0.5, this.game.config.height * .97, "Wall");
           this.finalScoreText = this.add.text(this.game.config.width * 0.5, 328, `Final score:`, { fontFamily: 'monospace',fontStyle: 'bold', fontSize: '30px', fill: 'white' });
           this.score = this.add.text(this.game.config.width * 0.5, 378, `${score}`, { fontFamily: 'monospace', fontSize: '30px', fill: 'white' });
           this.title = this.add.text(this.game.config.width * 0.5, 228, "YOU WON", {
@@ -520,13 +527,21 @@ class SceneMain extends Phaser.Scene {
             align: 'center'
           });
           
+          this.title2 = this.add.text(this.game.config.width * 0.5, 288, "We reinforced the shields!", {
+            fontFamily: 'monospace',
+            fontSize: 30,
+            fontStyle: 'bold',
+            color: 'black',
+            align: 'center'
+          });
           this.title.setOrigin(0.5);
+          this.title2.setOrigin(0.5);
           this.finalScoreText.setOrigin(.5);
           this.score.setOrigin(.5);
           
 
           this.time.addEvent({ 
-          delay: 6000,
+          delay: 8000,
           callback: function() {
             this.wall.winGame();
             console.log("new scene")
@@ -613,6 +628,7 @@ class SceneMain extends Phaser.Scene {
         this.physics.add.collider(this.playerLasers, this.hearts, function(playerLaser, heart) {
           if (heart) {
             if (heart.onDestroy !== undefined) {
+              heart.Ping();
               heart.onDestroy(); 
 
             }
@@ -623,6 +639,23 @@ class SceneMain extends Phaser.Scene {
             heart.Ping();
             heart.explode(true);
             livesText.setText(`Lives: ${lives}`)
+          }
+        });
+
+        this.physics.add.collider(this.playerLasers, this.stars, function(playerLaser, star) {
+          if (star) {
+            if (star.onDestroy !== undefined) {
+              heart.Ping();
+              heart.onDestroy(); 
+
+            }
+            
+            playerLaser.destroy();
+            score += 500;
+            console.log(star);
+            star.Ping();
+            star.explode(true);
+            scoreText.setText(`Score: ${score}`)
           }
         });
 
@@ -693,7 +726,17 @@ class SceneMain extends Phaser.Scene {
           if (!wall.getData("isDead") &&
               !heart.getData("isDead")) {
             heart.shieldHit();
+            
             heart.destroy();
+          }
+        });
+
+        this.physics.add.overlap(this.wall, this.stars, function(wall, star) {
+          if (!wall.getData("isDead") &&
+              !star.getData("isDead")) {
+            star.shieldHit();
+            
+            star.destroy();
           }
         });
 

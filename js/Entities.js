@@ -13,7 +13,7 @@ class Entity extends Phaser.GameObjects.Sprite {
     this.scene.sfx.WallHit.play();
     }
     Ping(){
-      this.scene.sfx.ShieldHit.play();
+      this.scene.sfx.Ping.play();
     }
     shieldHit(){
     this.scene.sfx.ShieldHit.play();
@@ -201,8 +201,15 @@ class RedEnemy extends Entity {
 
 class Heart extends Entity {
     constructor(scene, x, y) {
-      super(scene, x, y, "heart", "heart");
+      super(scene, x, y, "Heart", "heart");
       this.body.velocity.y = 200;
+    }
+  }
+
+class Star extends Entity {
+    constructor(scene, x, y) {
+      super(scene, x, y, "Star", "Star");
+      this.body.velocity.y = 250;
     }
   }
 
