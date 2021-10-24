@@ -565,6 +565,8 @@ class SceneMain extends Phaser.Scene {
           lives = 100;
           this.playerLasers.clear();
           this.enemyLasers.clear();
+          this.hearts.clear();
+          this.stars.clear();
           if(winMusic === "false"){
           this.wall.winGame();
           winMusic = "true";
