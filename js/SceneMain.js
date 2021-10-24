@@ -107,7 +107,7 @@ class SceneMain extends Phaser.Scene {
             //BOSS LEVEL
           if(BossActive === "false"){
           if(monsterKills >= 200){
-            console.log(bossLives);
+            
             BossActive = "true";
             this.music.stop();
             this.BossMusic.play();
@@ -128,20 +128,20 @@ class SceneMain extends Phaser.Scene {
                 boundsAlignH: "center",
                 boundsAlignV: "middle"
               });
-            console.log("bossenemy")
+            
               bossEnemy = new EnemyBoss(
                 this,
                 540,
                 0
               )
-             console.log(bossLives);
+             
           
           }
           
           }
           if(bossLives > 30 && bossLives <= 50){
             
-            console.log("LASERATTACK")
+            
             var laser = new EnemyLaser(
             this,
             400,
@@ -150,7 +150,7 @@ class SceneMain extends Phaser.Scene {
           }
           if(bossLives > 50 && bossLives <= 70){
             
-            console.log("LASERATTACK2")
+            
             var laser = new EnemyLaser(
             this,
             800,
@@ -159,7 +159,7 @@ class SceneMain extends Phaser.Scene {
           } 
           if(bossLives > 70 && bossLives <= 90){
             
-            console.log("LASERATTACK3")
+            
             var laser = new EnemyLaser(
             this,
             540,
@@ -187,7 +187,7 @@ class SceneMain extends Phaser.Scene {
             var redEnemy = null;
             if(bossLives > 1 && bossLives <= 50){
             
-            console.log("WallAttack")
+            
             var enemy = new BossWall(
             this,
             Phaser.Math.Between(400, this.game.config.width-400),
@@ -208,7 +208,7 @@ class SceneMain extends Phaser.Scene {
           }
           if(bossLives > 90 && bossLives <= 150){
             
-            console.log("WallAttack")
+            
             var enemy = new BossWall(
             this,
             Phaser.Math.Between(400, this.game.config.width-400),
@@ -560,7 +560,7 @@ class SceneMain extends Phaser.Scene {
           delay: 100,
           callback: function() {
           
-          console.log(this.enemyLasers);
+          
           lives = 100;
           this.playerLasers.clear();
           this.enemyLasers.clear();
@@ -572,7 +572,7 @@ class SceneMain extends Phaser.Scene {
           winMusic = "true";
           };
           this.BossMusic.stop();
-          console.log("you win")
+          
           this.bg.setTexture("city");
           levelText.setText('');
           livesText.setText('');
@@ -609,7 +609,7 @@ class SceneMain extends Phaser.Scene {
           delay: 10000,
           callback: function() {
             this.wall.winGame();
-            console.log("new scene")
+            
             this.scene.start("SceneGameWon");
 
           },
@@ -653,7 +653,7 @@ class SceneMain extends Phaser.Scene {
             }
             playerLaser.explode();
             bossLives += 1;
-            console.log(bossLives)
+            
             playerLaser.destroy();
             score += 10;
             monsterKills += 1;
@@ -700,7 +700,7 @@ class SceneMain extends Phaser.Scene {
             
             playerLaser.destroy();
             lives = lives+1;
-            console.log(lives);
+            
             heart.Ping();
             heart.explode(true);
             livesText.setText(`Lives: ${lives}`)
@@ -717,7 +717,7 @@ class SceneMain extends Phaser.Scene {
             
             playerLaser.destroy();
             score += 500;
-            console.log(star);
+            
             star.Ping();
             star.explode(true);
             scoreText.setText(`Score: ${score}`)
@@ -729,9 +729,9 @@ class SceneMain extends Phaser.Scene {
               !enemy.getData("isDead")) {
             
             enemy.explode(true);
-            console.log(lives);
+            //console.log(lives);
             lives = lives-1;
-            console.log(lives);
+            //console.log(lives);
             livesText.setText(`Lives: ${lives}`)
             //---------------
             wall.wallHit();
@@ -774,7 +774,7 @@ class SceneMain extends Phaser.Scene {
             enemyLaser.destroy();
             
             lives = lives-1;
-            console.log(lives);
+            //console.log(lives);
             livesText.setText(`Lives: ${lives}`)
             wall.wallHit();
             if(lives === 0){

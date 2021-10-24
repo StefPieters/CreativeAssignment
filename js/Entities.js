@@ -23,10 +23,10 @@ class Entity extends Phaser.GameObjects.Sprite {
     }
     explode(canDestroy) {
       if (!this.getData("isDead")) {
-        // Set the texture to the explosion image, then play the animation
-        this.setTexture("Explosion");  // this refers to the same animation key we used when we added this.anims.create previously
+        // Set the texture to the explosion image
+        this.setTexture("Explosion"); 
         this.play("Explosion"); // play the animation
-        // pick a random explosion sound within the array we defined in this.sfx in SceneMain
+        // pick a random explosion sound
         this.scene.sfx.explosions[Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)].play();
         if (this.shootTimer !== undefined) {
           if (this.shootTimer) {
@@ -71,9 +71,9 @@ class Player extends Entity {
         
         if (this.getData("isShooting")) {
           if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
-            this.setData("timerShootTick", this.getData("timerShootTick") + 1); // every game update, increase timerShootTick by one until we reach the value of timerShootDelay
+            this.setData("timerShootTick", this.getData("timerShootTick") + 1); 
           }
-          else { // when the "manual timer" is triggered:
+          else { 
             var laser = new PlayerLaser(this.scene, this.x, this.y);
             this.scene.playerLasers.add(laser);
             this.scene.sfx.laser.play(); // play the laser sound effect
@@ -175,13 +175,13 @@ class BlackEnemy extends Entity {
       if(this.x < 40){
         if(this.body.velocity.x <= 300){
         this.body.setVelocity(this.body.velocity.x*-1.2,this.body.velocity.y*2.5);
-        console.log("left");
+      
         }
         else if(this.body.velocity.x > 300){
         this.body.setVelocity(this.body.velocity.x*-.9,this.body.velocity.y*2.5)
         }
       }else if(this.x >= this.scene.game.config.width-40){
-        console.log("right");
+      
         if(this.body.velocity.x <= 300){
         this.body.setVelocity(this.body.velocity.x*-1.2,this.body.velocity.y*2.5);
         }

@@ -52,8 +52,8 @@ class SceneGameOver extends Phaser.Scene {
       this.btnRestart.setInteractive();
   
       this.btnRestart.on("pointerover", function() {
-        this.btnRestart.setTexture("sprBtnRestartHover"); // set the button texture to sprBtnPlayHover
-        this.sfx.btnOver.play(); // play the button over sound
+        this.btnRestart.setTexture("sprBtnRestartHover"); 
+        this.sfx.btnOver.play(); // play the button sound
       }, this);
   
       this.btnRestart.on("pointerout", function() {
@@ -82,7 +82,7 @@ class SceneGameOver extends Phaser.Scene {
     
     this.btnMenu.on("pointerover", function() {
       this.btnMenu.setTexture("sprBtnMenuHover");
-      this.sfx.btnOver.play(); // play the button over sound
+      this.sfx.btnOver.play(); // play the button sound
     }, this);
 
     this.btnMenu.on("pointerout", function() {
