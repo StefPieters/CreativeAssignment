@@ -11,7 +11,7 @@ class SceneMain extends Phaser.Scene {
         let scoreText;
         let lives = 5;
         let livesText;
-        let monsterKills = 200;
+        let monsterKills = 0;
         let levelText;
         let bossLives = 0; // 0 points is 100 hp for boss
         let BossActive = "false";
