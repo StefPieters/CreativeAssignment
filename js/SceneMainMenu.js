@@ -62,6 +62,7 @@ class SceneMainMenu extends Phaser.Scene {
                 percentText.destroy();
                 assetText.destroy();
             });
+      this.load.image("instructions", "assets/instructions.png");
       this.load.image("ProtectoTitle", "assets/ProtectoTitle.png");
       this.load.image("sprBtnMenu", "assets/ButtonMenu.png");
       this.load.image("sprBtnMenuHover", "assets/ButtonMenuHover.png");

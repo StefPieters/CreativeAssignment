@@ -137,7 +137,7 @@ class EnemyBoss extends Entity {
     constructor(scene, x, y) {
       super(scene, x, y, "EnemyBoss", "EnemyBoss");
       this.body.velocity.y = 2;
-      this.shootDelay = 1000;
+      this.shootDelay = 2000;
       this.shootTimer = this.scene.time.addEvent({
         delay: this.shootDelay,
         callback: function() {
@@ -206,7 +206,7 @@ class BossWall extends Entity {
       this.body.velocity.x = 0; 
     }
     update(){
-        if(this.y > 350){
+        if(this.y > 400){
           this.body.velocity.y = 0;
         }
   }

@@ -185,7 +185,8 @@ class SceneMain extends Phaser.Scene {
           delay: 3000,
           callback: function() {
             var enemy = null;
-            if(bossLives > 1 && bossLives <= 30){
+            var redEnemy = null;
+            if(bossLives > 1 && bossLives <= 50){
             
             console.log("WallAttack")
             var enemy = new BossWall(
@@ -193,8 +194,20 @@ class SceneMain extends Phaser.Scene {
             Phaser.Math.Between(400, this.game.config.width-400),
             0
           );
+          var redEnemy = new RedEnemy(
+            this,
+            Phaser.Math.Between(20, this.game.config.width-20),
+            0
+          );
           } 
-          if(bossLives > 90 && bossLives <= 100){
+          if(bossLives > 55 && bossLives <= 80){
+          var redEnemy = new RedEnemy(
+            this,
+            Phaser.Math.Between(20, this.game.config.width-20),
+            0
+          );
+          }
+          if(bossLives > 90 && bossLives <= 150){
             
             console.log("WallAttack")
             var enemy = new BossWall(
@@ -202,7 +215,16 @@ class SceneMain extends Phaser.Scene {
             Phaser.Math.Between(400, this.game.config.width-400),
             0
           );
+          var redEnemy = new RedEnemy(
+            this,
+            Phaser.Math.Between(20, this.game.config.width-20),
+            0
+          );
           } 
+          if (redEnemy !== null) {
+            redEnemy.setScale(15*0.1);
+            this.enemies.add(redEnemy);
+          }
           if (enemy !== null) {
             enemy.setScale(3);
             this.enemies.add(enemy);
@@ -532,7 +554,7 @@ class SceneMain extends Phaser.Scene {
           delay: 1000,
           callback: function() {
           
-          if(bossLives >= 100){
+          if(bossLives >= 150){
           
          
           this.time.addEvent({
@@ -616,7 +638,7 @@ class SceneMain extends Phaser.Scene {
       
         this.physics.add.overlap(this.playerLasers, this.bossEnemies, function(playerLaser, bossEnemy) {
           if (bossEnemy) {
-            if (bossLives === 100) {
+            if (bossLives === 150) {
               bossEnemy.onDestroy();
               bossEnemy.destroy();
               score += 1000;
@@ -624,8 +646,8 @@ class SceneMain extends Phaser.Scene {
               bossLivesText.setText('');
              
             }
-            if(bossLives <= 100){
-            bossLivesText.setText('HP BOSS: ' + (100-bossLives));
+            if(bossLives <= 150){
+            bossLivesText.setText('HP BOSS: ' + (150-bossLives));
             }
             playerLaser.explode();
             bossLives += 1;

@@ -9,6 +9,8 @@ class SceneTutorial extends Phaser.Scene {
     this.bgMenu = this.add.image(540,250, "MenuBackground")
         this.bgMenu.displayWidth = this.sys.canvas.width;
         this.bgMenu.displayHeight = 1100;
+    this.instructions = this.add.image(600,370, "instructions");
+    this.instructions.setOrigin(0.5);
     
     this.sfx = {
       btnOver: this.sound.add("sndBtnOver", {volume:0.2}),
@@ -45,7 +47,7 @@ class SceneTutorial extends Phaser.Scene {
       this.scene.start("SceneMainMenu");
     }, this);
 
-    this.subtitle = this.add.text(this.game.config.width * 0.5, 128, "Tutorial", {
+    this.subtitle = this.add.text(this.game.config.width * 0.5, 128, "Instructions", {
       fontFamily:"monospace",
       fontSize: 48,
       fontStyle: 'bold',
@@ -53,30 +55,15 @@ class SceneTutorial extends Phaser.Scene {
       align: 'center'
     });
     
-    this.text1 = this.add.text(this.game.config.width * 0.5, 200, "Move with LEFT and RIGHT for turret", {
+    this.text1 = this.add.text(80, 700, "Made by Stef", {
       fontFamily: 'monospace',
-      fontSize: 24,
+      fontSize: 18,
       fontStyle: 'bold',
       color: '#ffffff',
       align: 'center'
     });
-    this.text2 = this.add.text(this.game.config.width * 0.5, 300, "Move with Q and D for shield", {
-      fontFamily: 'monospace',
-      fontSize: 24,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center'
-    });
-    this.text3 = this.add.text(this.game.config.width * 0.5, 400, "Spacebar to shoot", {
-      fontFamily: 'monospace',
-      fontSize: 24,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center'
-    });
+    
     this.text1.setOrigin(.5);
-    this.text2.setOrigin(.5);
-    this.text3.setOrigin(.5);
     this.subtitle.setOrigin(0.5);
     }
   }
