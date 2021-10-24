@@ -9,6 +9,8 @@ class SceneGameWon extends Phaser.Scene {
       this.bgGameWon = this.add.image(540,300, "city")
       this.bgGameWon.displayWidth = this.sys.canvas.width;
       this.bgGameWon.displayHeight = this.sys.canvas.height;
+       this.musicStory = this.sound.add('StoryMusic', {volume:0.1});
+      this.musicStory.play();
       
       this.title = this.add.text(this.game.config.width * 0.5, 128, "THANK YOU HERO", {
         fontFamily: 'monospace',
@@ -56,6 +58,7 @@ class SceneGameWon extends Phaser.Scene {
   
       this.btnRestart.on("pointerup", function() {
         this.btnRestart.setTexture("sprBtnRestart");
+        this.musicStory.stop();
         this.scene.start("SceneMain");
       }, this);
 
@@ -85,6 +88,7 @@ class SceneGameWon extends Phaser.Scene {
 
     this.btnMenu.on("pointerup", function() {
       this.btnMenu.setTexture("sprBtnMenu");
+      this.musicStory.stop();
       this.scene.start("SceneMainMenu");
     }, this);
     }

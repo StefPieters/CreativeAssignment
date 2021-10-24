@@ -75,6 +75,10 @@ class SceneMainMenu extends Phaser.Scene {
       this.load.image("sprBtnPlay", "assets/ButtonPlay.png");
       this.load.image("sprBtnPlayHover", "assets/ButtonPlayHover.png");
       this.load.image("sprBtnPlayDown", "assets/ButtonPlayDown.png");
+
+      this.load.image("sprBtnSkip", "assets/ButtonSkip.png");
+      this.load.image("sprBtnSkipHover", "assets/ButtonSkipHover.png");
+      this.load.image("sprBtnSkipDown", "assets/ButtonSkipDown.png");
       
       this.load.image("sprBtnRestart", "assets/ButtonRestart.png");
       this.load.image("sprBtnRestartHover", "assets/ButtonRestartHover.png");
@@ -118,6 +122,9 @@ class SceneMainMenu extends Phaser.Scene {
         this.load.image("Wall", "assets/Wall.png");
         this.load.image("Background", "assets/Background.png");
         this.load.image("MenuBackground", "assets/menuBackground.png");
+        this.load.image("story1", "assets/story1.png");
+        this.load.image("story2", "assets/story2.png");
+        this.load.image("story3", "assets/story3.png");
         this.load.image("Player", "assets/Player.png", {
             frameWidth: 32,
             frameHeight: 32
@@ -133,6 +140,7 @@ class SceneMainMenu extends Phaser.Scene {
         this.load.audio("sndShieldHit", "assets/sndShieldHit.wav");
         this.load.audio("Music", "assets/Chiptronical.ogg");
         this.load.audio("BossMusic", "assets/HyruleCastle.mp3");
+        this.load.audio("StoryMusic", "assets/Dangerous.mp3");
         this.load.audio("HeartPing", "assets/heartPing.wav");
   }
 

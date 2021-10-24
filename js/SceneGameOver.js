@@ -11,6 +11,7 @@ class SceneGameOver extends Phaser.Scene {
       this.bgGameOver = this.add.image(540,300, "lostcity")
       this.bgGameOver.displayWidth = this.sys.canvas.width;
       this.bgGameOver.displayHeight = this.sys.canvas.height;
+     
 
       this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
         fontFamily: 'monospace',
@@ -96,6 +97,7 @@ class SceneGameOver extends Phaser.Scene {
     this.btnMenu.on("pointerup", function() {
       this.btnMenu.setTexture("sprBtnMenu");
       this.scene.start("SceneMainMenu");
+      
     }, this);
     }
 

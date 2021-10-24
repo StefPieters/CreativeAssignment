@@ -606,7 +606,7 @@ class SceneMain extends Phaser.Scene {
           
 
           this.time.addEvent({ 
-          delay: 8000,
+          delay: 10000,
           callback: function() {
             this.wall.winGame();
             console.log("new scene")
