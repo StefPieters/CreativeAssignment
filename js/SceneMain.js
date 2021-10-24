@@ -113,7 +113,7 @@ class SceneMain extends Phaser.Scene {
             this.music.stop();
             this.BossMusic.play();
             levelText.destroy();
-            bossLivesText = this.add.text(20, 60, "HP BOSS: 100", {
+            bossLivesText = this.add.text(20, 60, "HP BOSS: 150", {
                 fontFamily: 'monospace',
                 fontSize: '30px',
                 fontStyle: 'bold',
