@@ -167,27 +167,19 @@ class BlackEnemy extends Entity {
     constructor(scene, x, y) {
       super(scene, x, y, "BlackEnemy", "BlackEnemy");
       this.body.velocity.y = Phaser.Math.Between(40, 45);
-      this.body.velocity.x = Phaser.Math.Between(-400,400);
+      this.body.velocity.x = Phaser.Math.Between(-460,460);
       this.play("BlackEnemy");
     }
     update(){
       
       if(this.x < 40){
-        if(this.body.velocity.x <= 300){
-        this.body.setVelocity(this.body.velocity.x*-1.2,this.body.velocity.y*2.5);
+
+        this.body.setVelocity(this.body.velocity.x*-1.1,this.body.velocity.y*1.3);
       
-        }
-        else if(this.body.velocity.x > 300){
-        this.body.setVelocity(this.body.velocity.x*-.9,this.body.velocity.y*2.5)
-        }
       }else if(this.x >= this.scene.game.config.width-40){
       
-        if(this.body.velocity.x <= 300){
-        this.body.setVelocity(this.body.velocity.x*-1.2,this.body.velocity.y*2.5);
-        }
-        else if(this.body.velocity.x > 300){
-        this.body.setVelocity(this.body.velocity.x*-.9,this.body.velocity.y*2.5)
-        }
+        this.body.setVelocity(this.body.velocity.x*-1.1,this.body.velocity.y*1.3);
+
       }
     }
     
