@@ -3,7 +3,6 @@ class SceneMain extends Phaser.Scene {
       super({ key: "SceneMain" });
     }
     preload(){
-    
     }
     create() {
       
@@ -398,7 +397,7 @@ class SceneMain extends Phaser.Scene {
               
             }
             else if (Phaser.Math.Between(0, 10) >= 5) {
-              if (this.getEnemiesByType("GreenEnemy").length < 5/* values to change amount of enemies)*/) {
+              if (this.getEnemiesByType("GreenEnemy").length < 5) {
                 enemy = new GreenEnemy(
                   this,
                   Phaser.Math.Between(20, this.game.config.width-20),
@@ -565,6 +564,7 @@ class SceneMain extends Phaser.Scene {
           lives = 100;
           this.playerLasers.clear();
           this.enemyLasers.clear();
+          this.enemies.clear();
           this.hearts.clear();
           this.stars.clear();
           if(winMusic === "false"){
@@ -592,7 +592,7 @@ class SceneMain extends Phaser.Scene {
             align: 'center'
           });
           
-          this.title2 = this.add.text(this.game.config.width * 0.5, 288, "We reinforced the shields!", {
+          this.title2 = this.add.text(this.game.config.width * 0.5, 288, "We killed the mothership!", {
             fontFamily: 'monospace',
             fontSize: 30,
             fontStyle: 'bold',

@@ -98,7 +98,7 @@ class SceneStory extends Phaser.Scene {
           callback: function() {
           this.bgstory.setTexture("story2");
           this.text.setText("It grew bigger everyday, It started emitting light,")
-          this.text2.setText("Thats when we started to reinforce the city with a wall")
+          this.text2.setText("That's when we started to reinforce the city with a wall")
 
             },
           callbackScope: this,
@@ -120,8 +120,34 @@ class SceneStory extends Phaser.Scene {
     this.time.addEvent({
           delay: 23000,
           callback: function() {
-            this.musicStory.stop();
-            this.scene.start("SceneMain");
+          this.text.setText("Let's defeat these monsters!")
+          this.text2.setText("")
+            this.btnPlay = this.add.sprite(
+              this.game.config.width * 0.5,
+              this.game.config.height * 0.5,
+              "sprBtnPlay"
+            );
+            this.btnPlay.setScale(.2);
+            this.btnPlay.setInteractive();
+            this.btnPlay.on("pointerover", function() {
+              this.btnPlay.setTexture("sprBtnPlayHover"); // set the button texture to sprBtnPlayHover
+              this.sfx.btnOver.play(); // play the button over sound
+            }, this);
+
+            this.btnPlay.on("pointerout", function() {
+              this.setTexture("sprBtnPlay");
+            });
+
+            this.btnPlay.on("pointerdown", function() {
+              this.btnPlay.setTexture("sprBtnPlayDown");
+              this.sfx.btnDown.play();
+            }, this);
+
+            this.btnPlay.on("pointerup", function() {
+              this.btnPlay.setTexture("sprBtnPlay");
+              this.musicStory.stop();
+              this.scene.start("SceneMain");
+            }, this);
             },
           callbackScope: this,
           loop: false

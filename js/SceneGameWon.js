@@ -3,7 +3,6 @@ class SceneGameWon extends Phaser.Scene {
       super({ key: "SceneGameWon" });
     }
     preload(){
-      
     }
     create() {
       this.bgGameWon = this.add.image(540,300, "city")

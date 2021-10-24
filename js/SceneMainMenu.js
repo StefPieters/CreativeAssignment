@@ -62,86 +62,86 @@ class SceneMainMenu extends Phaser.Scene {
                 percentText.destroy();
                 assetText.destroy();
             });
-      this.load.image("instructions", "assets/instructions.png");
-      this.load.image("ProtectoTitle", "assets/ProtectoTitle.png");
-      this.load.image("sprBtnMenu", "assets/ButtonMenu.png");
-      this.load.image("sprBtnMenuHover", "assets/ButtonMenuHover.png");
-      this.load.image("sprBtnMenuDown", "assets/ButtonMenuDown.png");
+      this.load.image("instructions", "assets/sprites/instructions.png");
+      this.load.image("ProtectoTitle", "assets/sprites/ProtectoTitle.png");
+      this.load.image("sprBtnMenu", "assets/sprites/ButtonMenu.png");
+      this.load.image("sprBtnMenuHover", "assets/sprites/ButtonMenuHover.png");
+      this.load.image("sprBtnMenuDown", "assets/sprites/ButtonMenuDown.png");
 
-      this.load.image("sprBtnTutorial", "assets/ButtonTutorial.png");
-      this.load.image("sprBtnTutorialHover", "assets/ButtonTutorialHover.png");
-      this.load.image("sprBtnTutorialDown", "assets/ButtonTutorialDown.png");
+      this.load.image("sprBtnTutorial", "assets/sprites/ButtonTutorial.png");
+      this.load.image("sprBtnTutorialHover", "assets/sprites/ButtonTutorialHover.png");
+      this.load.image("sprBtnTutorialDown", "assets/sprites/ButtonTutorialDown.png");
 
-      this.load.image("sprBtnPlay", "assets/ButtonPlay.png");
-      this.load.image("sprBtnPlayHover", "assets/ButtonPlayHover.png");
-      this.load.image("sprBtnPlayDown", "assets/ButtonPlayDown.png");
+      this.load.image("sprBtnPlay", "assets/sprites/ButtonPlay.png");
+      this.load.image("sprBtnPlayHover", "assets/sprites/ButtonPlayHover.png");
+      this.load.image("sprBtnPlayDown", "assets/sprites/ButtonPlayDown.png");
 
-      this.load.image("sprBtnSkip", "assets/ButtonSkip.png");
-      this.load.image("sprBtnSkipHover", "assets/ButtonSkipHover.png");
-      this.load.image("sprBtnSkipDown", "assets/ButtonSkipDown.png");
+      this.load.image("sprBtnSkip", "assets/sprites/ButtonSkip.png");
+      this.load.image("sprBtnSkipHover", "assets/sprites/ButtonSkipHover.png");
+      this.load.image("sprBtnSkipDown", "assets/sprites/ButtonSkipDown.png");
       
-      this.load.image("sprBtnRestart", "assets/ButtonRestart.png");
-      this.load.image("sprBtnRestartHover", "assets/ButtonRestartHover.png");
-      this.load.image("sprBtnRestartDown", "assets/ButtonRestartDown.png"); /* button restart */
-      this.load.audio("sndBtnOver", "assets/sndBtnOver.wav");
-      this.load.audio("sndBtnDown", "assets/sndBtnDown.wav");
-      this.load.image("Background", "assets/Background.png");
+      this.load.image("sprBtnRestart", "assets/sprites/ButtonRestart.png");
+      this.load.image("sprBtnRestartHover", "assets/sprites/ButtonRestartHover.png");
+      this.load.image("sprBtnRestartDown", "assets/sprites/ButtonRestartDown.png"); /* button restart */
+      this.load.audio("sndBtnOver", "assets/sound/sndBtnOver.wav");
+      this.load.audio("sndBtnDown", "assets/sound/sndBtnDown.wav");
+      this.load.image("Background", "assets/sprites/Background.png");
       
       //preload game
-      this.load.spritesheet("RedEnemy", "assets/RedEnemy.png", {
+      this.load.spritesheet("RedEnemy", "assets/sprites/RedEnemy.png", {
             frameWidth: 32,
             frameHeight: 32
         });
-        this.load.spritesheet("GreenEnemy", "assets/GreenEnemy.png", {
+        this.load.spritesheet("GreenEnemy", "assets/sprites/GreenEnemy.png", {
             frameWidth: 32,
             frameHeight: 32
         });  
-        this.load.spritesheet("PinkEnemy", "assets/PinkEnemy.png", {
+        this.load.spritesheet("PinkEnemy", "assets/sprites/PinkEnemy.png", {
             frameWidth: 32,
             frameHeight: 32
         }); 
-        this.load.spritesheet("BlackEnemy", "assets/BlackEnemy.png", {
+        this.load.spritesheet("BlackEnemy", "assets/sprites/BlackEnemy.png", {
             frameWidth: 32,
             frameHeight: 32
         }); 
-        this.load.spritesheet("EnemyBoss", "assets/EnemyBoss.png", {
+        this.load.spritesheet("EnemyBoss", "assets/sprites/EnemyBoss.png", {
             frameWidth: 64,
             frameHeight: 64
         });
-        this.load.spritesheet("Explosion", "assets/Explosion.png", {
+        this.load.spritesheet("Explosion", "assets/sprites/Explosion.png", {
             frameWidth: 32,
             frameHeight: 32
         });
-        this.load.image("BossWall", "assets/BossWall.png");
-        this.load.image("Star", "assets/star.png");
-        this.load.image("Heart", "assets/heart.png");
-        this.load.image("lostcity", "assets/lostcity.png");
-        this.load.image("LaserPlayer", "assets/LaserPlayer.png");
-        this.load.image("LaserEnemy", "assets/LaserEnemy.png");
-        this.load.image("Shield", "assets/Shield.png");
-        this.load.image("Wall", "assets/Wall.png");
-        this.load.image("Background", "assets/Background.png");
-        this.load.image("MenuBackground", "assets/menuBackground.png");
-        this.load.image("story1", "assets/story1.png");
-        this.load.image("story2", "assets/story2.png");
-        this.load.image("story3", "assets/story3.png");
-        this.load.image("Player", "assets/Player.png", {
+        this.load.image("BossWall", "assets/sprites/BossWall.png");
+        this.load.image("Star", "assets/sprites/star.png");
+        this.load.image("Heart", "assets/sprites/heart.png");
+        this.load.image("lostcity", "assets/sprites/lostcity.png");
+        this.load.image("LaserPlayer", "assets/sprites/LaserPlayer.png");
+        this.load.image("LaserEnemy", "assets/sprites/LaserEnemy.png");
+        this.load.image("Shield", "assets/sprites/Shield.png");
+        this.load.image("Wall", "assets/sprites/Wall.png");
+        this.load.image("Background", "assets/sprites/Background.png");
+        this.load.image("MenuBackground", "assets/sprites/menuBackground.png");
+        this.load.image("story1", "assets/sprites/story1.png");
+        this.load.image("story2", "assets/sprites/story2.png");
+        this.load.image("story3", "assets/sprites/story3.png");
+        this.load.image("Player", "assets/sprites/Player.png", {
             frameWidth: 32,
             frameHeight: 32
           });
-        this.load.image("city", "assets/city.png");
+        this.load.image("city", "assets/sprites/city.png");
 
-        this.load.audio("sndExplode0", "assets/sndExplode0.wav");
-        this.load.audio("sndExplode1", "assets/sndExplode1.wav");
-        this.load.audio("sndLaser", "assets/sndLaser.wav");
-        this.load.audio("sndLoseGame", "assets/sndLoseGame.wav");
-        this.load.audio("sndWinGame", "assets/sndWinGame.wav");
-        this.load.audio("sndWallHit", "assets/sndWallHit.wav");
-        this.load.audio("sndShieldHit", "assets/sndShieldHit.wav");
-        this.load.audio("Music", "assets/Chiptronical.ogg");
-        this.load.audio("BossMusic", "assets/HyruleCastle.mp3");
-        this.load.audio("StoryMusic", "assets/Dangerous.mp3");
-        this.load.audio("HeartPing", "assets/heartPing.wav");
+        this.load.audio("sndExplode0", "assets/sound/sndExplode0.wav");
+        this.load.audio("sndExplode1", "assets/sound/sndExplode1.wav");
+        this.load.audio("sndLaser", "assets/sound/sndLaser.wav");
+        this.load.audio("sndLoseGame", "assets/sound/sndLoseGame.wav");
+        this.load.audio("sndWinGame", "assets/sound/sndWinGame.wav");
+        this.load.audio("sndWallHit", "assets/sound/sndWallHit.wav");
+        this.load.audio("sndShieldHit", "assets/sound/sndShieldHit.wav");
+        this.load.audio("Music", "assets/sound/Chiptronical.ogg");
+        this.load.audio("BossMusic", "assets/sound/HyruleCastle.mp3");
+        this.load.audio("StoryMusic", "assets/sound/Dangerous.mp3");
+        this.load.audio("HeartPing", "assets/sound/heartPing.wav");
   }
 
   create() {
